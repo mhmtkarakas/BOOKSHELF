@@ -22,6 +22,7 @@ const booksReducer = (state=initialState,action) =>{
                 ...state,
                 pending:false,
                 success:true,
+                fail:false,
                 books:action.payload
             }
         case actionTypes.bookActions.GET_BOOKS_FAIL:
@@ -30,9 +31,11 @@ const booksReducer = (state=initialState,action) =>{
                 pending:false,
                 success:false,
                 fail:true,
-                error:action.payload("error")
+                error:action.payload
             }
         default:
             return state
       }
 }
+
+export default booksReducer
