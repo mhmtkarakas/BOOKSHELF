@@ -1,12 +1,49 @@
-import { BrowserRouter,Routes,Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import Header from "./components/Header";
+import api from "./api/api";
+import urls from "./api/urls";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import actionTypes from './redux/actions/actionTypes';
+import { useSelector } from "react-redux";
 
 function App() {
+      const dispatch = useDispatch();
+      const {booksState,categoryState} = useSelector(state=>state)
+      useEffect(()=>{
+        // Dispatch yapacagiz ve bizden bir action bekliyor. Action dedigimiz sey bir objeden ibarettir ve bir type i olmali !!!
+        // Bunun bir payload i yok cunku yaptigi tek sey pending i true yapmak
+         dispatch({type:actionTypes.bookActions.GET_BOOKS_START}) 
+         api.get(urls.books)
+         // Basarili olursa then kismina duser
+         .then((res)=>{
+           dispatch({type:actionTypes.bookActions.GET_BOOKS_SUCCESS,payload:res.data}) //Planimizi payload ile birlikte bir dizi gelecek sekilde yaptik. data ile birlikte zaten dizi gelmektedir.
+         })
+         // Basarisiz olursa catch kismina duser
+          .catch((err)=>{
+          dispatch({type:actionTypes.bookActions.GET_BOOKS_FAIL,payload:err("server tarafinda hata olustu")})
+          })
+          /* fetch categories */
+          dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_START}) 
+          api.get(urls.categories)
+          .then((res)=>{
+            dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_SUCCESS,payload:res.data})
+          })
+          .catch((err)=>{
+            dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_FAIL,payload:err("server tarafinda hata olustu")})
+          })
+      },[])
+         // validation
+      if (booksState.success === false || categoryState.success === false)
+      return null;
+
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<HomePage />}/>
-    </Routes>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </BrowserRouter>
   );
 }
