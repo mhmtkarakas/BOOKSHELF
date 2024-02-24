@@ -7,25 +7,34 @@
         "publisher": "can yayınları",
         "isbn": "444444444444",
         "price": 50,
-        "categoryId": "1677346446411"
+        "categoryId": "1"
+      },
+      {
+        "id": "1677438724174",
+        "name": "yeşil gecesi",
+        "author": "ayfer unç",
+        "publisher": "can yayınları",
+        "isbn": "444444",
+        "price": 50,
+        "categoryId": "2"
       }
     ],
     "categories": [
       {
-        "id": "1677346446411",
+
+        "id": "1",
         "name": "Roman"
       },
       {
-        "id": "1677346451214",
-        "name": "Deneme"
+
+        "id": "2",
+        "name": "Siir"
       },
       {
-        "id": "1677346459404",
-        "name": "bilim kurgu deneme"
-      },
-      {
-        "id": "1677437573415",
-        "name": "deneme deneme deneme DENEME DeNeMe"
+
+        "id": "3",
+        "name": "Oyku"
       }
+    
     ]
   }
