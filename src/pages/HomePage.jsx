@@ -1,10 +1,11 @@
 import React from "react";
-import ListBooks from "../components/ListBooks";
+import ListBook from "../components/ListBook";
+
 
 const HomePage = () => {
   return (
     <div>
-      <ListBooks />
+     <ListBook />
     </div>
   );
 };

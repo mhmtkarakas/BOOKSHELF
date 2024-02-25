@@ -1,5 +1,6 @@
 
-import actionTypes from './../actions/actionTypes';
+import actionTypes from "../actions/actionTypes"
+
 
 const  initialState = {
     pending:false,
@@ -13,10 +14,12 @@ const categoryReducer = (state=initialState,action) =>{
            switch (action.type) {
             case actionTypes.categoryActions.GET_CATEGORIES_START:
                 return{
-                    pending:true
+                    ...state,
+                    pending:true,
                 }
               case actionTypes.categoryActions.GET_CATEGORIES_SUCCESS:
                 return{
+                    ...state,
                     pending:false,
                     success:true,
                     categories:action.payload,
@@ -24,6 +27,7 @@ const categoryReducer = (state=initialState,action) =>{
                 }
                  case actionTypes.categoryActions.GET_CATEGORIES_FAIL:
                     return{
+                        ...state,
                         pending:false,
                         success:false,
                         fail:true,

@@ -1,40 +1,72 @@
 {
-    "books": [
-      {
-        "id": "1677438724173",
-        "name": "yeşil peri gecesi",
-        "author": "ayfer tunç",
-        "publisher": "can yayınları",
-        "isbn": "444444444444",
-        "price": 50,
+  "books": [
+    {
+      "id": "1",
+      "name": "Yeşil Peri Gecesi",
+      "author": "Ayfer Tunç",
+      "publisher": "Can Yayınları",
+      "isbn": "121234353532",
+      "price": 29.99,
+      "categoryId": "1"
+    },
+    {
+      "id": "2",
+      "name": "sefiller",
+      "author": "victor hugo",
+      "publisher": "iş bankası yayınları",
+      "isbn": "24568524536",
+      "price": 80,
+      "categoryId": "1"
+    },
+    {
+      "id": "1677672563547",
+      "name": "Bir Akşam Üstü",
+      "author": "Atilla İlhan",
+      "publisher": "iş bankası yayınları",
+      "isbn": "998564556252536",
+      "price": 150,
+      "categoryId": "2",
+      "form": {
+        "id": "1677672563547",
+        "name": "karamazov kardeşler",
+        "author": "dostoyevski",
+        "publisher": "iş bankası yayınları",
+        "isbn": "998564556252536",
+        "price": 150,
         "categoryId": "1"
-      },
-      {
-        "id": "1677438724174",
-        "name": "yeşil gecesi",
-        "author": "ayfer unç",
-        "publisher": "can yayınları",
-        "isbn": "444444",
-        "price": 50,
+      }
+    },
+    {
+      "id": "1678015611908",
+      "name": "Bir Akşam",
+      "author": "Atilla İlhan",
+      "publisher": "Işık",
+      "isbn": "85625364523",
+      "price": 80,
+      "categoryId": "2",
+      "form": {
+        "id": "1678015611908",
+        "name": "Bir Akşam",
+        "author": "Atilla İlhan",
+        "publisher": "Işık",
+        "isbn": "85625364523",
+        "price": 80,
         "categoryId": "2"
       }
-    ],
-    "categories": [
-      {
-
-        "id": "1",
-        "name": "Roman"
-      },
-      {
-
-        "id": "2",
-        "name": "Siir"
-      },
-      {
-
-        "id": "3",
-        "name": "Oyku"
-      }
-    
-    ]
-  }
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Roman"
+    },
+    {
+      "id": "2",
+      "name": "Şiir"
+    },
+    {
+      "id": "1678028452995",
+      "name": "Deneme"
+    }
+  ]
+}

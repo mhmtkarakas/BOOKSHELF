@@ -4,13 +4,15 @@ import Header from "./components/Header";
 import api from "./api/api";
 import urls from "./api/urls";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import actionTypes from './redux/actions/actionTypes';
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import actionTypes from "./redux/actions/actionTypes";
+
 
 function App() {
       const dispatch = useDispatch();
       const {booksState,categoryState} = useSelector(state=>state)
+      // console.log(booksState);
+      // console.log(categoryState);
       useEffect(()=>{
         // Dispatch yapacagiz ve bizden bir action bekliyor. Action dedigimiz sey bir objeden ibarettir ve bir type i olmali !!!
         // Bunun bir payload i yok cunku yaptigi tek sey pending i true yapmak
@@ -22,7 +24,7 @@ function App() {
          })
          // Basarisiz olursa catch kismina duser
           .catch((err)=>{
-          dispatch({type:actionTypes.bookActions.GET_BOOKS_FAIL,payload:err("server tarafinda hata olustu")})
+          dispatch({type:actionTypes.bookActions.GET_BOOKS_FAIL,payload:"server tarafinda hata olustu"})
           })
           /* fetch categories */
           dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_START}) 
@@ -31,7 +33,7 @@ function App() {
             dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_SUCCESS,payload:res.data})
           })
           .catch((err)=>{
-            dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_FAIL,payload:err("server tarafinda hata olustu")})
+            dispatch({type:actionTypes.categoryActions.GET_CATEGORIES_FAIL,payload:"server tarafinda hata olustu"})
           })
       },[])
          // validation
