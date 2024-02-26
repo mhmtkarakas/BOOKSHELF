@@ -35,24 +35,6 @@
         "price": 150,
         "categoryId": "1"
       }
-    },
-    {
-      "id": "1678015611908",
-      "name": "Bir Akşam",
-      "author": "Atilla İlhan",
-      "publisher": "Işık",
-      "isbn": "85625364523",
-      "price": 80,
-      "categoryId": "2",
-      "form": {
-        "id": "1678015611908",
-        "name": "Bir Akşam",
-        "author": "Atilla İlhan",
-        "publisher": "Işık",
-        "isbn": "85625364523",
-        "price": 80,
-        "categoryId": "2"
-      }
     }
   ],
   "categories": [

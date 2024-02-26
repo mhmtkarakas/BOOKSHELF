@@ -3,6 +3,9 @@ import { useSelector,useDispatch } from "react-redux";
 import api from "../api/api";
 import urls from "../api/urls";
 import actionTypes from "../redux/actions/actionTypes";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomModal from "./CustomModal";
 
 // List Book componentinde kitaplarimizi listeleyecegiz.
 const ListBook = () => {
@@ -15,16 +18,20 @@ const ListBook = () => {
    // veri tabaninda bir silme islemi yaptiysak ayni silme islemini kendi statetimizde de yapmaliyiz. Bunu da reducerda yapiyoruz
    // reducer tarafindan store da silindikten sonra subscribe oldugumuz icin guncel hali componentimize gelecek ve guncel hali ekrana basilacak.
     dispatch({type:actionTypes.bookActions.DELETE_BOOKS_START})
+ 
       api.delete(`${urls.books}/${id}`)
       .then((res)=>{
         // silme isleminin baslamasi icin dispatch ile tetiklememiz gerekiyor
         dispatch({type:actionTypes.bookActions.DELETE_BOOKS_SUCCESS,payload:id})
+        toast.success("Kitap başarıyla silindi");
       })
       .catch((err)=>{
         dispatch({type:actionTypes.bookActions.DELETE_BOOKS_FAIL,payload:"Silme Islemi Esnasinda Hata Olustu"})
+        toast.error("Kitap silinirken bir hata oluştu");
       })
   }
   return (
+    <>
     <div className="container my-5">
       <table className="table table-striped">
         <thead>
@@ -63,7 +70,7 @@ const ListBook = () => {
                     role="group"
                     aria-label="Basic example"
                   >
-                    <button onClick={()=>deleteBook(book.id)} type="button" class="btn btn-danger">
+                    <button onClick={()=>{deleteBook(book.id)}} type="button" class="btn btn-danger">
                       Sil
                     </button>
                     <button type="button" class="btn btn-primary">
@@ -80,6 +87,8 @@ const ListBook = () => {
         </tbody>
       </table>
     </div>
+    <CustomModal title="Silme !!!" mesaj="Silmek Istediginize Emin misiniz?" />
+    </>
   );
 };
 
