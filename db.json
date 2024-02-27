@@ -17,24 +17,6 @@
       "isbn": "24568524536",
       "price": 80,
       "categoryId": "1"
-    },
-    {
-      "id": "1677672563547",
-      "name": "Bir Akşam Üstü",
-      "author": "Atilla İlhan",
-      "publisher": "iş bankası yayınları",
-      "isbn": "998564556252536",
-      "price": 150,
-      "categoryId": "2",
-      "form": {
-        "id": "1677672563547",
-        "name": "karamazov kardeşler",
-        "author": "dostoyevski",
-        "publisher": "iş bankası yayınları",
-        "isbn": "998564556252536",
-        "price": 150,
-        "categoryId": "1"
-      }
     }
   ],
   "categories": [

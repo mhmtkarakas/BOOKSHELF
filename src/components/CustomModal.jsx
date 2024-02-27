@@ -1,6 +1,6 @@
 import React from "react";
-
-const CustomModal = ({ title, mesaj }) => {
+             // fonksiyonlarimizi prop olarak burada karsiliyoruz 
+const CustomModal = ({ title, mesaj, onCancel=()=>{}, onConfirm=()=>{} }) => { 
   return (
     <div
       style={{
@@ -13,6 +13,7 @@ const CustomModal = ({ title, mesaj }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        zIndex:1000
       }}
     >
       <div
@@ -27,10 +28,11 @@ const CustomModal = ({ title, mesaj }) => {
         <p className="text-center fs-4">{mesaj}</p>
         <div className="text-center">
           <div className="btn-group " role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-lg btn-danger mx-3">
+            {/* prop olarak gelen fonksiyonlar onClick oldugunda calisacak sekilde kodumuzu yaziyoruz */}
+            <button onClick={onConfirm} type="button" className="btn btn-lg btn-danger mx-3">
               --Sil--
             </button>
-            <button type="button" className="btn btn-lg btn-primary">
+            <button onClick={onCancel} type="button" className="btn btn-lg btn-primary">
               Vazgec
             </button>
            
