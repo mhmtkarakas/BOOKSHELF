@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
+import BookDetail from "./pages/BookDetail";
+
 import api from "./api/api";
 import urls from "./api/urls";
 import { useEffect } from "react";
@@ -45,6 +48,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+         {/* book-dateil pathimizden sonra : isareti bir degisken gelecegi anlamina gelir. Yazacagimiz degisken ismi 
+         ListBook komponentinde yazdigimiz book.id yi isaret eder. Bu sekilde yapmamizin nedeni useParams ile url den
+         okudugumuz id ye ait olan kitap bilgilerini bookDetail sayfasina cekmektir. !!! */}
+        <Route path="/book-detail/:bookId" element={<BookDetail />} />
       </Routes>
     </BrowserRouter>
   );

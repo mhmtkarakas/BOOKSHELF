@@ -6,6 +6,7 @@ import actionTypes from "../redux/actions/actionTypes";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomModal from "./CustomModal";
+import { Link } from "react-router-dom";
 
 // List Book componentinde kitaplarimizi listeleyecegiz.
 const ListBook = () => {
@@ -95,9 +96,11 @@ const ListBook = () => {
                       <button type="button" class="btn btn-primary">
                         Duzenle
                       </button>
-                      <button type="button" class="btn btn-success">
+                      {/* farkli bir sayfaya gittigimizde hangi kitabin detayini goreceksek onun id sini de gormeyi bekleriz,
+                      yani hangi kitabin detayini gormek istiyorsak onun id sini yazacagiz */}
+                      <Link to={`/book-detail/${book.id}`} type="button" class="btn btn-success">
                         Detay
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -119,7 +122,7 @@ const ListBook = () => {
             // bu sekilde prop olarak gonderdigimiz onConfirm fonksiyonu CustomModal componentinde onClick oldugunda silinecek.
             onConfirm={()=>{
               deleteBook(willDeleteBook)
-              setShowModal(false)}}
+              setShowModal(true)}}
           />
         )
       }
