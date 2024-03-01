@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import BookDetail from "./pages/BookDetail";
+import AddBook from "./pages/AddBook";
+import Error from "./pages/Error";
 
 import api from "./api/api";
 import urls from "./api/urls";
@@ -52,6 +54,8 @@ function App() {
          ListBook komponentinde yazdigimiz book.id yi isaret eder. Bu sekilde yapmamizin nedeni useParams ile url den
          okudugumuz id ye ait olan kitap bilgilerini bookDetail sayfasina cekmektir. !!! */}
         <Route path="/book-detail/:bookId" element={<BookDetail />} />
+        <Route path="/add-book" element={<AddBook />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

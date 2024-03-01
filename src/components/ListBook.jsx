@@ -43,8 +43,11 @@ const ListBook = () => {
       });
   };
   return (
-    <>
-      <div className="container my-5">
+    <div className="my-5">
+      <div className="d-flex justify-content-end me-5">
+       <Link to={"/add-book"} className="btn btn-primary">Kitap Ekle</Link>
+      </div>
+      <div className="container ">
         <table className="table table-striped">
           <thead>
             <tr>
@@ -126,7 +129,7 @@ const ListBook = () => {
           />
         )
       }
-    </>
+    </div>
   );
 };
 

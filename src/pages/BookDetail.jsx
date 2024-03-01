@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import api from "../api/api";
 import urls from "../api/urls";
@@ -59,6 +59,7 @@ const BookDetail = () => {
             <td>{myBook.isbn}</td>
             <td>{bookCategory.name}</td>
           </tr>
+          <Link to={"/"}>Geri</Link>
         </tbody>
       </table>
     </div>
@@ -69,3 +70,6 @@ export default BookDetail;
 
 // useParams ile id sini okudugumuz kitabi serverimizdan axios ile cekip ekrana basariz
 // Yazilim dunyasinda da islem bu sekilde yurur. Store dan ilgili id ye sahip kitabi cekmek mantikli degildir.
+// 1. Once gittik useParams ile url yi okuduk. Url den kitabin id sini aldik
+// 2. kitabin id sini aldiktan sonra kitabi cektik
+// 3. daha sonra kitabin kategorisinin id sini de api ile cektik sonra da ekrana bastik.
