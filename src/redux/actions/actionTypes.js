@@ -9,6 +9,9 @@ const actionTypes = {  //olusacak durumlara gore actiontypelari olusturuyoruz. N
         DELETE_BOOKS_START:"DELETE_BOOKS_START",
         DELETE_BOOKS_SUCCESS:"DELETE_BOOKS_SUCCESS",
         DELETE_BOOKS_FAIL:"DELETE_BOOKS_FAIL",
+        // Book eklemek icin tek asmali (uc asamali da olabilir ama bunu tek asamali yaptik) actionType olustururuz.
+        // actionType imizi yazdiktan sonra reducer i yazariz
+        ADD_BOOK:"ADD_BOOK"
     },
     categoryActions:{
          GET_CATEGORIES_START:"GET_CATEGORIES_START",

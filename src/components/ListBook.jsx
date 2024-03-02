@@ -78,7 +78,7 @@ const ListBook = () => {
                   <th scope="row">{index + 1}</th>
                   <td>{book.name}</td>
                   <td>{book.author}</td>
-                  <td>{myCategory.name}</td>
+                  {/* <td>{myCategory.name}</td> */}
                   <td>
                     <div
                       class="btn-group"

@@ -17,6 +17,15 @@
       "isbn": "24568524536",
       "price": 80,
       "categoryId": "1"
+    },
+    {
+      "id": "1709412049010",
+      "name": "Tutunamayanlar",
+      "author": "Oguz Atay",
+      "publisher": "Iletisim",
+      "isbn": "9998765558",
+      "price": 150,
+      "categoryId": ""
     }
   ],
   "categories": [
