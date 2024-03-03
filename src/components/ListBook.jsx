@@ -72,13 +72,16 @@ const ListBook = () => {
               // for dongusu ile yaptigimiz islemin kisaltilmis hali find metodudur. es6 ile gelen bir metottur
               const myCategory = categoryState.categories.find(
                 (item) => item.id === book.categoryId
-              );
+              )
               return (
                 <tr key={book.id}>
                   <th scope="row">{index + 1}</th>
                   <td>{book.name}</td>
                   <td>{book.author}</td>
-                  {/* <td>{myCategory.name}</td> */}
+                  {/* find metodu belirtilen kosulu saglayan bir oge bulamamsi durumunda "undefined" dondurebilir
+                  Bu durumda myCategory.name ifadesi çalışmayacaktır çünkü undefined üzerinde name özelliği bulunmamaktadır.
+                  Bu nedenle asagidaki gibi bir validation yapmaliyiz.*/}
+                  <td>{myCategory ? myCategory.name : 'Bilinmeyen Kategori'}</td>
                   <td>
                     <div
                       class="btn-group"
@@ -125,7 +128,7 @@ const ListBook = () => {
             // bu sekilde prop olarak gonderdigimiz onConfirm fonksiyonu CustomModal componentinde onClick oldugunda silinecek.
             onConfirm={()=>{
               deleteBook(willDeleteBook)
-              setShowModal(true)}}
+              setShowModal(false)}}
           />
         )
       }

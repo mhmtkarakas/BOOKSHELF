@@ -22,7 +22,7 @@ const AddBook = () => {
     publisher: "",
     isbn: "",
     price: "",
-    categoryId: "",
+    categoryId: categoryState.categories[0].id,
   });
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -128,6 +128,8 @@ const AddBook = () => {
 
         <select
           className="form-select"
+          //React ta selecti kontrol ederken bir baslangic degeri olarak default deger vermeliyiz
+          defaultValue={categoryState.categories[0].id}
           value={form.categoryId}
           onChange={(event) =>
             setForm({ ...form, categoryId: event.target.value })
