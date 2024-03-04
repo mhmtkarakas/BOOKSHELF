@@ -64,6 +64,26 @@ const booksReducer = (state = initialState, action) => {
         ...state, // Butun state i geciririz
         books: [...state.books, action.payload], //books dizisinde ise state icindeki butun kitaplari getiririz. Ilaveten action icinde payload ile gelecek olan kitabi da diziye ekleriz
       };
+      case actionTypes.bookActions.EDIT_BOOK:
+        // let temp=[] // gecici bir dizi olustururuz
+        // for(i=0;i<state.books.length;i++){ // for dongusu ile statin icindeki sepeti tek tek gezecegiz
+        //      if(state.books[i].id !== action.payload.id){ //statin icindeki kitabin id si ile action payload ile gonderdigimiz kitabin id si ile esit degilse
+        //        temp.push(state.books[i]) // olusturdugumuz gecici diziye oldugu gibi koyariz
+        //      }else{
+        //       temp.push(action.payload) //esit ise eski kitabi degilde yeni kitabi koyariz
+        //      }
+        // }
+            const editBook = state.books.map((book)=>{ // for dongusu ile yaptigimiz islemleri map ile de yapabiliriz. Gecici dizi ile ugrasmak istemiyorsak map ile yapabiliriz.
+              if(book.id !== action.payload.id){ // statein icindeki kitabin id si ile action payload ile gonderdigimiz kitabin id si ile esit degilse
+                return book // kitabimizi oldugu gibi return ederiz
+              }else{ //esit ise eski kitabi degilde yeni kitabi koyariz ve return ederiz
+                return action.payload
+              }
+            })
+        return{
+              ...state,
+            books:editBook //burada butun statimizi alir sonra da booksumuzu edit book ile degisiriz.
+        }
     default:
       return state;
   }
