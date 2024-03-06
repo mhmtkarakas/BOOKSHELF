@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import api from "../api/api";
 import urls from "../api/urls";
@@ -13,11 +13,28 @@ const ListBook = () => {
   // custommodal icin state olusturuyoruz
   const [showModal, setShowModal] = useState(false);
   // silmek istedigimiz book id sini tutmasi icin state olusturduk.
-  const [willDeleteBook,setWillDeleteBook] = useState("");
+  const [willDeleteBook, setWillDeleteBook] = useState("");
   const dispatch = useDispatch();
   // ListBook componentinde verilerimizi ekrana basmak icin stora subscribe olmak gerek bunun icin useSelector ile sybscribe islemini gerceklestiriyoruz.
   const { booksState, categoryState } = useSelector((state) => state);
-  console.log(categoryState);
+  // Inputumuzu kontrol etmek icin bir state olustururuz
+  const [searchText, setSearchText] = useState("");
+  // input icinde bir diziyi filitremeli ve filitreledigimiz diziyi ekrana basmaliyiz. Bunun tutmak icin de bir state olusturmaliyiz.
+  const [filteredBooks, setFilteredBooks] = useState(booksState.books) // state imizin baslangic degeri butun kitaplari search yapacagimiz icin kitaplarimizin hepsidir
+  //!!! searchText her degistiginde useEffect islemi yapmaliyiz. Bu da componentDidUpdate olur
+  // Bu tur islemlerde yasam dongusu kullanmayi unutmamaliyiz
+   useEffect(()=>{
+    // Filtreleme islemini filter fonksiyonu icinde  includes isimli fonksiyon ile yapiyoruz. Bu fonksiyon case sensitive yani buyuk veya kucuk harf
+    // duyarliligi vardir. Bu nedenle yapacagimiz islemde tolowercase yada touppercase yapmayi unutmamaliyiz
+    // 1. temp isimli gecici bir dizi olusturduk
+    // 2. stateimizdeki butun kitaplari aldik ve filter fonksiyonu ile filitreden gecirdik
+    // 3. includes fonksiyonu ile searcText inputumuzu arattirdik 
+    // 4. son olarak temp dizimizi setFilteredBooks statetimizin icine aldik.
+    // Not. yazara gore arattirma yaparsak book.name yerine book.author yazmamiz yeterli
+    const temp = booksState.books.filter(book => book.name.toLowerCase().includes(searchText.toLowerCase()));
+    setFilteredBooks(temp)
+   },[searchText])
+
   // Delete islemi icin burada fonksiyonumuzu olustururuz.
   const deleteBook = (id) => {
     // veri tabaninda bir silme islemi yaptiysak ayni silme islemini kendi statetimizde de yapmaliyiz. Bunu da reducerda yapiyoruz
@@ -44,10 +61,20 @@ const ListBook = () => {
   };
   return (
     <div className="my-5">
-      <div className="d-flex justify-content-end me-5">
-       <Link to={"/add-book"} className="btn btn-primary">Kitap Ekle</Link>
+      <div className="container d-flex justify-content-center">
+        {/* Kitap arama islemleri icin bir input yelestiririz */}
+        <input
+          className="form-control w-75 me-5 "
+          type="text"
+          placeholder="Kitap Ismi Giriniz..."
+          value={searchText} // inputu kontrol ediyoruz
+          onChange={(e)=>setSearchText(e.target.value)}
+        />
+        <Link to={"/add-book"} className="btn btn-primary ">
+          Kitap Ekle
+        </Link>
       </div>
-      <div className="container ">
+      <div className="container my-5">
         <table className="table table-striped">
           <thead>
             <tr>
@@ -59,7 +86,8 @@ const ListBook = () => {
             </tr>
           </thead>
           <tbody>
-            {booksState.books.map((book, index) => {
+            {/* state imizi olusturdugumuz icin store un icindeki kitaplari degil de filteredBooks dizisini ekrana basariz*/}
+            {filteredBooks.map((book, index) => {
               // return ile map arasina js kodu yazmak icin burada suslu parantez kullandik ve iki tabloyu birlestirdik
               //   let myCategory=null;
               // for dongusu kullanarak categories id ile books dizisinde bulunan categoryId esit olanlari buluyoruz
@@ -72,7 +100,7 @@ const ListBook = () => {
               // for dongusu ile yaptigimiz islemin kisaltilmis hali find metodudur. es6 ile gelen bir metottur
               const myCategory = categoryState.categories.find(
                 (item) => item.id === book.categoryId
-              )
+              );
               return (
                 <tr key={book.id}>
                   <th scope="row">{index + 1}</th>
@@ -81,7 +109,9 @@ const ListBook = () => {
                   {/* find metodu belirtilen kosulu saglayan bir oge bulamamasi durumunda "undefined" dondurebilir
                   Bu durumda myCategory.name ifadesi çalışmayacaktır çünkü undefined üzerinde name özelliği bulunmamaktadır.
                   Bu nedenle asagidaki gibi bir validation yapmaliyiz.*/}
-                  <td>{myCategory ? myCategory.name : 'Bilinmeyen Kategori'}</td>
+                  <td>
+                    {myCategory ? myCategory.name : "Bilinmeyen Kategori"}
+                  </td>
                   <td>
                     <div
                       class="btn-group"
@@ -99,14 +129,22 @@ const ListBook = () => {
                       >
                         Sil
                       </button>
-                       {/* farkli bir sayfaya gittigimizde hangi kitabin detayini goreceksek onun id sini de gormeyi bekleriz,
+                      {/* farkli bir sayfaya gittigimizde hangi kitabin detayini goreceksek onun id sini de gormeyi bekleriz,
                       yani hangi kitabin detayini gormek istiyorsak onun id sini yazacagiz */}
-                      <Link to={`/edit-book/${book.id}`} type="button" class="btn btn-primary">
+                      <Link
+                        to={`/edit-book/${book.id}`}
+                        type="button"
+                        class="btn btn-primary"
+                      >
                         Duzenle
                       </Link>
                       {/* farkli bir sayfaya gittigimizde hangi kitabin detayini goreceksek onun id sini de gormeyi bekleriz,
                       yani hangi kitabin detayini gormek istiyorsak onun id sini yazacagiz */}
-                      <Link to={`/book-detail/${book.id}`} type="button" class="btn btn-success">
+                      <Link
+                        to={`/book-detail/${book.id}`}
+                        type="button"
+                        class="btn btn-success"
+                      >
                         Detay
                       </Link>
                     </div>
@@ -123,14 +161,15 @@ const ListBook = () => {
           <CustomModal
             title="Silme !!!"
             mesaj="Silmek Istediginize Emin misiniz?"
-          // onCancel fonksiyonunu prop olarak CustomModal componentine gondeririz
-          // bu sekilde setShowModal ile false cektigimiz modal onClick oldugunda kapanacak
-            onCancel={()=>setShowModal(false)}
+            // onCancel fonksiyonunu prop olarak CustomModal componentine gondeririz
+            // bu sekilde setShowModal ile false cektigimiz modal onClick oldugunda kapanacak
+            onCancel={() => setShowModal(false)}
             // deleteBook fonksiyonuna parametre olarak willDeleteBook state imizi ekleriz
             // bu sekilde prop olarak gonderdigimiz onConfirm fonksiyonu CustomModal componentinde onClick oldugunda silinecek.
-            onConfirm={()=>{
-              deleteBook(willDeleteBook)
-              setShowModal(false)}}
+            onConfirm={() => {
+              deleteBook(willDeleteBook);
+              setShowModal(false);
+            }}
           />
         )
       }
