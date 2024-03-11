@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import actionTypes from "./redux/actions/actionTypes";
 import ListCategories from './pages/ListCategories';
+import AddCategory from './pages/AddCategory';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/edit-book/:bookId" element={<EditBook />} />
         <Route path="/add-book" element={<AddBook />} />
         <Route path="/list-categories" element={<ListCategories />} />
+        <Route path="/add-category" element={<AddCategory />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
