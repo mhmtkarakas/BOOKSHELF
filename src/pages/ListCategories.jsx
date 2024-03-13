@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ListCategories = () => {
     // storumuza abone oluyoruz
   const { categoryState, booksState } = useSelector((state) => state);
-  console.log(categoryState);
+  
   return (
     <div className="container my-5">
       <div className="d-flex justify-content-end my-5">

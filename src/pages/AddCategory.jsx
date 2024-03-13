@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import { toast } from 'react-toastify';
+import { useSelector } from "react-redux";
 
 const AddCategory = () => {
+  const {categoryState} = useSelector((state)=>state);
+
     // formu kontrol etmek icin useState kullandik
     const [form,setForm] = useState({
         id:String(new Date().getTime()),
@@ -14,6 +17,13 @@ const AddCategory = () => {
         if(form.name=== ""){
             toast.warning("Kategori alani bos birakilamaz ")
             return
+        }
+        // Burada ana statetimizde mevcut olan kategori ile inputumuza girdigimiz kategori ismini esitliyoruz
+        const hasCategory = categoryState.categories.find(
+          (item) => item.name.toLowerCase() === form.name.toLowerCase()
+        );
+        if(hasCategory !== undefined){
+          toast.warning("Boyle bir kategori zaten mevcut")
         }
     }
   return (
