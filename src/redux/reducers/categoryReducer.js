@@ -33,6 +33,13 @@ const categoryReducer = (state=initialState,action) =>{
                         fail:true,
                         error:action.payload
                     }
+                    // addcategory icin yeni case olustururuz. addbook islemine benzer bir case olacak
+                    // bundan sonra yapacagimiz sadece bu islemi tetiklemek olacak
+                    case actionTypes.categoryActions.ADD_CATEGORY:
+                        return{
+                            ...state,
+                            categories:[...state.categories, action.payload]
+                        }
             default:
                 return state
            }

@@ -1,8 +1,18 @@
 import React, {useState} from "react";
 import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+
+import actionTypes from "../redux/actions/actionTypes";
+
+import api from "../api/api"
+import urls from "../api/urls"
+
+import { useNavigate } from "react-router-dom";
 
 const AddCategory = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {categoryState} = useSelector((state)=>state);
 
     // formu kontrol etmek icin useState kullandik
@@ -24,7 +34,18 @@ const AddCategory = () => {
         );
         if(hasCategory !== undefined){
           toast.warning("Boyle bir kategori zaten mevcut")
+          return;
         }
+        // kullanicinin girdigi yeni kategoriyi server a kaydetmemiz gerekir
+        api.post(urls.categories,form)
+        // Tetikleme islemi then kisminda dispatch ile olacak olacak
+        .then((res)=>{
+          dispatch({type:actionTypes.categoryActions.ADD_CATEGORY, payload:form})
+          navigate("/list-categories")
+        })
+        .catch((err)=>{
+          toast.warning("Kategory eklerken bir hata olustu")
+        })
     }
   return (
     <div className=" my-5">

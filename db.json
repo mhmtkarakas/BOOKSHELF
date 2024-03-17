@@ -1,15 +1,6 @@
 {
   "books": [
     {
-      "id": "1",
-      "name": "Yeşil Peri Gecesi",
-      "author": "Ayfer Tunç",
-      "publisher": "Can Yayınları",
-      "isbn": "121234353532",
-      "price": 29.99,
-      "categoryId": "1"
-    },
-    {
       "id": "2",
       "name": "sefiller",
       "author": "victor hugo",
@@ -26,6 +17,15 @@
       "isbn": "999877688866",
       "price": 400,
       "categoryId": "2"
+    },
+    {
+      "id": "1710707386313",
+      "name": "karamazov kardesler",
+      "author": "dostoyevski",
+      "publisher": "yky",
+      "isbn": "9998765558",
+      "price": 200,
+      "categoryId": "1710705469177"
     }
   ],
   "categories": [
@@ -40,6 +40,10 @@
     {
       "id": "1678028452995",
       "name": "Deneme"
+    },
+    {
+      "id": "1710705469177",
+      "name": "elestiri"
     }
   ]
 }

@@ -18,6 +18,8 @@ const actionTypes = {  //olusacak durumlara gore actiontypelari olusturuyoruz. N
          GET_CATEGORIES_START:"GET_CATEGORIES_START",
          GET_CATEGORIES_SUCCESS:"GET_CATEGORIES_SUCCESS",
          GET_CATEGORIES_FAIL:"GET_CATEGORIES_FAIL",
+         // Category eklemek cin yeni actiontype olusturmamiz gerekir
+         ADD_CATEGORY:"ADD_CATEGORY"
     }
 }
 
