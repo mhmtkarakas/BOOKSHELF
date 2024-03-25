@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 import CustomModal from "./../components/CustomModal";
+import actionTypes from "../redux/actions/actionTypes"
 
 import api from "../api/api";
 import urls from "../api/urls";
 
 const ListCategories = () => {
+  const dispatch = useDispatch();
   // Modal icin state tutuyoruz
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
  // Belirledigimiz kategoriyi silmek icin state tutariz
@@ -22,15 +26,22 @@ const ListCategories = () => {
     api.delete(`${urls.categories}/${id}`) //veri tabanindan sileriz
     .then((resCat)=>{
         // Kategory silme islemini dispatch ederiz
-        booksState.map(item =>{
-          api.delete(`${urls.books}/${item.id}`)
-          .then((resBook)=>{
-            // dispatch delete book
-          })
-          .catch((err)=>{})
-        })
+        dispatch({type:actionTypes.categoryActions.DELETE_CATEGORY,payload:id})
+        // booksState.map(item =>{
+        //   api.delete(`${urls.books}/${item.id}`)
+        //   .then((resBook)=>{
+        //     // dispatch delete book
+        //     dispatch({type:actionTypes.bookActions.DELETE_BOOKS_SUCCESS,payload:item.id})
+        //   })
+        //   .catch((err)=>{
+        //     toast.error("Silme islemi esnasinda hata olustu")
+        //   })
+        // })
     })
-    .catch((err)=>{})
+    .catch((err)=>{
+      toast.error("Silme islemi esnasinda hata olustu")
+    })
+    setOpenDeleteModal(false)
   }
 
   return (
@@ -102,6 +113,7 @@ const ListCategories = () => {
             mesaj="Kategori ile beraber ilgili butun kitaplar da silinecektir. Bu islemi yapmak istediginize emin misiniz?"
             // Kullanici silme islemini iptal edebilir. Bunun icin fonksiyon propunu import ederiz.
             onCancel = {()=>{setOpenDeleteModal(false)}}
+
 
             onConfirm = {()=>deleteCategory(willDeleteCategory)} // Bu islemle kategory silinecek. Yukarda fonksiyonumuzu calistiracagiz.
           />

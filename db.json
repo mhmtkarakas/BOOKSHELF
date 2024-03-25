@@ -25,7 +25,7 @@
       "publisher": "yky",
       "isbn": "9998765558",
       "price": 200,
-      "categoryId": "1710705469177"
+      "categoryId": null
     }
   ],
   "categories": [
@@ -40,10 +40,6 @@
     {
       "id": "1678028452995",
       "name": "Deneme"
-    },
-    {
-      "id": "1710705469177",
-      "name": "elestiri"
     }
   ]
 }

@@ -12,14 +12,17 @@ const actionTypes = {  //olusacak durumlara gore actiontypelari olusturuyoruz. N
         // Book eklemek icin tek asmali (uc asamali da olabilir ama bunu tek asamali yaptik) actionType olustururuz.
         // actionType imizi yazdiktan sonra reducer i yazariz
         ADD_BOOK:"ADD_BOOK",
-        EDIT_BOOK:"EDIT_BOOK"
+        EDIT_BOOK:"EDIT_BOOK",
+        DELETE_BOOKS_AFTER_DELETE_CATEGORY
     },
     categoryActions:{
          GET_CATEGORIES_START:"GET_CATEGORIES_START",
          GET_CATEGORIES_SUCCESS:"GET_CATEGORIES_SUCCESS",
          GET_CATEGORIES_FAIL:"GET_CATEGORIES_FAIL",
          // Category eklemek cin yeni actiontype olusturmamiz gerekir
-         ADD_CATEGORY:"ADD_CATEGORY"
+         ADD_CATEGORY:"ADD_CATEGORY",
+         // Category silmek icin yeni actionType olusturmamiz gerekir
+         DELETE_CATEGORY:"DELETE_CATEGORY"
     }
 }
 
