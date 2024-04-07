@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { toast } from "react-toastify";
-
 import CustomModal from "./../components/CustomModal";
-import actionTypes from "../redux/actions/actionTypes"
+import actionTypes from "../redux/actions/actionTypes";
 
 import api from "../api/api";
 import urls from "../api/urls";
@@ -14,35 +12,29 @@ const ListCategories = () => {
   const dispatch = useDispatch();
   // Modal icin state tutuyoruz
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
- // Belirledigimiz kategoriyi silmek icin state tutariz
-  const [willDeleteCategory,setWillDeleteCategory] = useState("");
+  // Belirledigimiz kategoriyi silmek icin state tutariz
+  const [willDeleteCategory, setWillDeleteCategory] = useState("");
   // storumuza abone oluyoruz
   const { categoryState, booksState } = useSelector((state) => state);
 
-  const deleteCategory = (id) =>{
-    // silmek istedigimiz kategoriye ait kitaplari bulmamiz gerekir.
-    const book = booksState.books.filter(item=>item.categoryId === id)
-    console.table(book);
-    api.delete(`${urls.categories}/${id}`) //veri tabanindan sileriz
-    .then((resCat)=>{
+  const deleteCategory = (id) => {
+    api
+      .delete(`${urls.categories}/${id}`) //veri tabanindan sileriz
+      .then((resCat) => {
         // Kategory silme islemini dispatch ederiz
-        dispatch({type:actionTypes.categoryActions.DELETE_CATEGORY,payload:id})
-        // booksState.map(item =>{
-        //   api.delete(`${urls.books}/${item.id}`)
-        //   .then((resBook)=>{
-        //     // dispatch delete book
-        //     dispatch({type:actionTypes.bookActions.DELETE_BOOKS_SUCCESS,payload:item.id})
-        //   })
-        //   .catch((err)=>{
-        //     toast.error("Silme islemi esnasinda hata olustu")
-        //   })
-        // })
-    })
-    .catch((err)=>{
-      toast.error("Silme islemi esnasinda hata olustu")
-    })
-    setOpenDeleteModal(false)
-  }
+        dispatch({
+          type: actionTypes.categoryActions.DELETE_CATEGORY,
+          payload: id,
+        });
+
+        dispatch({
+          type: actionTypes.bookActions.DELETE_BOOKS_AFTER_DELETE_CATEGORY,
+          payload: id,
+        });
+      })
+      .catch((err) => {});
+    setOpenDeleteModal(false);
+  };
 
   return (
     <div className="container my-5">
@@ -85,7 +77,7 @@ const ListCategories = () => {
                       <button
                         onClick={() => {
                           setOpenDeleteModal(true);
-                          setWillDeleteCategory(category.id) // silmek istedigimiz kategory
+                          setWillDeleteCategory(category.id); // silmek istedigimiz kategory
                         }}
                         className="btn btn-sm btn-danger"
                       >
@@ -112,10 +104,10 @@ const ListCategories = () => {
             title="Kategory Silme"
             mesaj="Kategori ile beraber ilgili butun kitaplar da silinecektir. Bu islemi yapmak istediginize emin misiniz?"
             // Kullanici silme islemini iptal edebilir. Bunun icin fonksiyon propunu import ederiz.
-            onCancel = {()=>{setOpenDeleteModal(false)}}
-
-
-            onConfirm = {()=>deleteCategory(willDeleteCategory)} // Bu islemle kategory silinecek. Yukarda fonksiyonumuzu calistiracagiz.
+            onCancel={() => {
+              setOpenDeleteModal(false);
+            }}
+            onConfirm={() => deleteCategory(willDeleteCategory)} // Bu islemle kategory silinecek. Yukarda fonksiyonumuzu calistiracagiz.
           />
         )
       }

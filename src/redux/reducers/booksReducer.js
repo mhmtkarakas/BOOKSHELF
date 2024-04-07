@@ -84,6 +84,12 @@ const booksReducer = (state = initialState, action) => {
               ...state,
             books:editBook //burada butun statimizi alir sonra da booksumuzu edit book ile degisiriz.
         }
+        case actionTypes.bookActions.DELETE_BOOKS_AFTER_DELETE_CATEGORY:
+          var temp = state.books.filter(item => item.categoryId !== action.payload)
+          return {
+            ...state,
+            books:temp
+          }
     default:
       return state;
   }

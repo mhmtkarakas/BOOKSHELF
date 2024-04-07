@@ -13,7 +13,7 @@ const actionTypes = {  //olusacak durumlara gore actiontypelari olusturuyoruz. N
         // actionType imizi yazdiktan sonra reducer i yazariz
         ADD_BOOK:"ADD_BOOK",
         EDIT_BOOK:"EDIT_BOOK",
-        DELETE_BOOKS_AFTER_DELETE_CATEGORY
+        DELETE_BOOKS_AFTER_DELETE_CATEGORY:"DELETE_BOOKS_AFTER_DELETE_CATEGORY"
     },
     categoryActions:{
          GET_CATEGORIES_START:"GET_CATEGORIES_START",

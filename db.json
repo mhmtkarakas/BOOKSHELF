@@ -7,39 +7,17 @@
       "publisher": "iş bankası yayınları",
       "isbn": "24568524536",
       "price": 80,
-      "categoryId": "1"
-    },
-    {
-      "id": "1709413310475",
-      "name": "Tutunamayanlar",
-      "author": "Oguz Atay edit",
-      "publisher": "Iletisim",
-      "isbn": "999877688866",
-      "price": 400,
-      "categoryId": "2"
-    },
-    {
-      "id": "1710707386313",
-      "name": "karamazov kardesler",
-      "author": "dostoyevski",
-      "publisher": "yky",
-      "isbn": "9998765558",
-      "price": 200,
       "categoryId": null
     }
   ],
   "categories": [
     {
-      "id": "1",
+      "id": "1712524530257",
       "name": "Roman"
     },
     {
-      "id": "2",
-      "name": "Şiir"
-    },
-    {
-      "id": "1678028452995",
-      "name": "Deneme"
+      "id": "1712524547205",
+      "name": "Siir"
     }
   ]
 }

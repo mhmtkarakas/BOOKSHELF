@@ -70,9 +70,16 @@ const ListBook = () => {
           value={searchText} // inputu kontrol ediyoruz
           onChange={(e)=>setSearchText(e.target.value)}
         />
-        <Link to={"/add-book"} className="btn btn-primary ">
+        {// Kategori silince o kategoriye ait kitaplarin da silinmesini istiyoruz 
+         // bu nedenle kitap eklemeden once kategory eklenmesi icin bu islem yapildi
+          categoryState.categories.length === 0 ? (
+            <Link to={"/add-category"}>Oncelikle Kategori Eklenmeli</Link>
+          ) : (
+            <Link to={"/add-book"} className="btn btn-primary ">
           Kitap Ekle
         </Link>
+          )
+        }
       </div>
       <div className="container my-5">
         <table className="table table-striped">
