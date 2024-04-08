@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 import CustomModal from "./../components/CustomModal";
 import actionTypes from "../redux/actions/actionTypes";
 
@@ -31,8 +33,11 @@ const ListCategories = () => {
           type: actionTypes.bookActions.DELETE_BOOKS_AFTER_DELETE_CATEGORY,
           payload: id,
         });
+        toast.success("Kategory başarıyla silindi");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        toast.error("Kategory silinirken bir hata oluştu");
+      });
     setOpenDeleteModal(false);
   };
 

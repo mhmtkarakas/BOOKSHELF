@@ -14,6 +14,7 @@ import { useDispatch,useSelector } from "react-redux";
 import actionTypes from "./redux/actions/actionTypes";
 import ListCategories from './pages/ListCategories';
 import AddCategory from './pages/AddCategory';
+import EditCategory from './pages/EditCategory';
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/add-book" element={<AddBook />} />
         <Route path="/list-categories" element={<ListCategories />} />
         <Route path="/add-category" element={<AddCategory />} />
+        <Route path="/edit-category/:categoryId" element={<EditCategory />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
