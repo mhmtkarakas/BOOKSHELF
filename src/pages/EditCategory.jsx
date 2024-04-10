@@ -24,7 +24,7 @@ const EditCategory = () => {
     }
     // Burada ana statetimizde mevcut olan kategori ile inputumuza girdigimiz kategori ismini esitliyoruz
     const hasCategory = categoryState.categories.find(
-      (item) => item.name.toLowerCase() === form.name.toLowerCase()
+      (item) => item.name.toLocaleLowerCase() === form.name.toLocaletoLowerCase()
     );
     if (hasCategory !== undefined) {
       toast.warning("Boyle bir kategori zaten mevcut");
@@ -49,17 +49,12 @@ const EditCategory = () => {
             />
           </div>
           <div className="d-flex justify-content-center">
-            <button
-              disabled={
-                form.name.toLocalLowerCase("tr-TR") ===
-                myCategory.name.toLocalLowerCase("tr-TR")
+            <button  disabled={
+                form.name.toLocaleLowerCase("tr-TR") ===
+                myCategory.name.toLocaleLowerCase("tr-TR")
                   ? true
                   : false
-              }
-              className="btn btn-primary w-25 my-3"
-            >
-              Guncelle
-            </button>
+              } className="btn btn-primary w-25 my-3" type="submit">Guncelle</button>
           </div>
         </form>
       </div>
