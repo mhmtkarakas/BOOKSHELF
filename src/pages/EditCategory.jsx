@@ -2,14 +2,21 @@ import React, { useState } from "react";
 
 import { toast } from "react-toastify";
 
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import actionTypes from "../redux/actions/actionTypes";
+
+import api from '../api/api';
+import urls from '../api/urls';
 
 const EditCategory = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { categoryId } = useParams();
   const { categoryState } = useSelector((state) => state); // state subscribe oluyoruz
+ 
   // formumuzun kontrolu icin state bagliyoruz
-
   const myCategory = categoryState.categories.find(
     (item) => item.id === categoryId
   ); //editleyecegimiz kategoriyi bulmak icin find metodu kullaniyoruz
@@ -24,12 +31,20 @@ const EditCategory = () => {
     }
     // Burada ana statetimizde mevcut olan kategori ile inputumuza girdigimiz kategori ismini esitliyoruz
     const hasCategory = categoryState.categories.find(
-      (item) => item.name.toLocaleLowerCase() === form.name.toLocaletoLowerCase()
+      (item) => item.name.toLocaleLowerCase() === form.name.toLocaleLowerCase()
     );
     if (hasCategory !== undefined) {
       toast.warning("Boyle bir kategori zaten mevcut");
       return;
     }
+    api.put(`${urls.categories}/${categoryId}`,form)
+    .then(res=>{
+       dispatch({type:actionTypes.categoryActions.EDIT_CATEGORY,payload:form})
+       navigate("/list-categories")
+       toast.success("Edit islemi basarili")
+       return;
+    })
+    .catch(err =>{})
   };
   return (
     <div>

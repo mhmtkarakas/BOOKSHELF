@@ -74,7 +74,7 @@ const booksReducer = (state = initialState, action) => {
         //      }
         // }
             const editBook = state.books.map((book)=>{ // for dongusu ile yaptigimiz islemleri map ile de yapabiliriz. Gecici dizi ile ugrasmak istemiyorsak map ile yapabiliriz.
-              if(book.id !== action.payload.id){ // statein icindeki kitabin id si ile action payload ile gonderdigimiz kitabin id si ile esit degilse
+              if(book.id !== action.payload.id){ // state in icindeki kitabin id si ile action payload ile gonderdigimiz kitabin id si ile esit degilse
                 return book // kitabimizi oldugu gibi return ederiz
               }else{ //esit ise eski kitabi degilde yeni kitabi koyariz ve return ederiz
                 return action.payload

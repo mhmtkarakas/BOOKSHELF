@@ -22,7 +22,9 @@ const actionTypes = {  //olusacak durumlara gore actiontypelari olusturuyoruz. N
          // Category eklemek cin yeni actiontype olusturmamiz gerekir
          ADD_CATEGORY:"ADD_CATEGORY",
          // Category silmek icin yeni actionType olusturmamiz gerekir
-         DELETE_CATEGORY:"DELETE_CATEGORY"
+         DELETE_CATEGORY:"DELETE_CATEGORY",
+         //Category editlemek icin yeni actionType olusturmamiz gerekir
+         EDIT_CATEGORY:" EDIT_CATEGORY"
     }
 }
 

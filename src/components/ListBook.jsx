@@ -33,7 +33,7 @@ const ListBook = () => {
     // Not. yazara gore arattirma yaparsak book.name yerine book.author yazmamiz yeterli
     const temp = booksState.books.filter(book => book.name.toLowerCase().includes(searchText.toLowerCase()));
     setFilteredBooks(temp)
-   },[searchText])
+   },[searchText,booksState])
 
   // Delete islemi icin burada fonksiyonumuzu olustururuz.
   const deleteBook = (id) => {

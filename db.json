@@ -17,20 +17,29 @@
       "isbn": "999877688866",
       "price": 200,
       "categoryId": "1712598084607"
+    },
+    {
+      "id": "1712853020513",
+      "name": "Yansimalar",
+      "author": "Atilla Ilhan",
+      "publisher": "YKY",
+      "isbn": "777755776889",
+      "price": 200,
+      "categoryId": "1712835929172"
     }
   ],
   "categories": [
     {
       "id": "1712524530257",
-      "name": "Roman"
-    },
-    {
-      "id": "1712524547205",
-      "name": "Siir"
+      "name": "Hikaye"
     },
     {
       "id": "1712598084607",
-      "name": "deneme"
+      "name": "Roman"
+    },
+    {
+      "id": "1712835929172",
+      "name": "Siir"
     }
   ]
 }
